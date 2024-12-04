@@ -80,7 +80,7 @@ const TaskList: React.FC = () => {
         ))}
       </div>
       <TaskDialog
-        task={currentTask}
+        task={currentTask ?? undefined}
         onSave={handleSave}
         isOpen={isDialogOpen}
         onOpenChange={setIsDialogOpen}
