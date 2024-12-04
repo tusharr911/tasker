@@ -1,50 +1,89 @@
-# React + TypeScript + Vite
+# Tasker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Tasker is a task management application built with React, TypeScript, and Vite. It allows users to manage their tasks efficiently with features like task creation, editing, deletion, and filtering.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Task Creation**: Easily create new tasks with a title and description.
+- **Task Editing**: Edit existing tasks to update their details.
+- **Task Deletion**: Remove tasks that are no longer needed.
+- **Task Filtering**: Filter tasks based on their status (all, completed, pending, overdue).
+- **Search Functionality**: Search tasks by title.
+- **Responsive Design**: Works well on both desktop and mobile devices.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Frontend**:
 
-- Configure the top-level `parserOptions` property like this:
+  - [React](https://reactjs.org/): A JavaScript library for building user interfaces.
+  - [TypeScript](https://www.typescriptlang.org/): A typed superset of JavaScript that compiles to plain JavaScript.
+  - [Vite](https://vitejs.dev/): A build tool that aims to provide a faster and leaner development experience for modern web projects.
+  - [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for rapid UI development.
+  - [Redux](https://redux.js.org/): A predictable state container for JavaScript apps.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **Build Tools**:
+  - [PostCSS](https://postcss.org/): A tool for transforming CSS with JavaScript plugins.
+  - [Autoprefixer](https://github.com/postcss/autoprefixer): A PostCSS plugin to parse CSS and add vendor prefixes to CSS rules.
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) (version 14 or higher)
+- [npm](https://www.npmjs.com/) (version 6 or higher)
+
+## Installation
+
+1. Clone the repository:
+
+   ```sh
+   git clone https://github.com/your-username/tasker.git
+   cd tasker
+   ```
+
+2. Install dependencies:
+
+   ```sh
+   npm install
+   ```
+
+3. Run the development server:
+
+   ```sh
+   npm run dev
+   ```
+
+4. Build the project:
+
+   ```sh
+   npm run build
+   ```
+
+5. Preview the production build:
+
+   ```sh
+   npm run preview
+   ```
+
+## Project Structure
+
+```plaintext
+├── public
+│   ├── notes.svg
+│   └── ...
+├── src
+│   ├── components
+│   │   ├── custom
+│   │   │   └── TaskList.tsx
+│   │   └── ...
+│   ├── main.tsx
+│   └── ...
+├── index.html
+├── tailwind.config.js
+├── package.json
+└── ...
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## License
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+This project is licensed under the MIT License.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Feel free to customize the README.md file as needed.

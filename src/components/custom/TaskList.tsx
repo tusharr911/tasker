@@ -43,9 +43,9 @@ const TaskList: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="p-4">
       <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <div className="flex space-x-4 mb-4 w-full items-center justify-center">
+      <div className="flex flex-wrap space-x-4 mb-4 w-full items-center justify-center">
         <Button variant="outline" onClick={() => dispatch(setFilter("all"))}>
           All Tasks
         </Button>
@@ -68,7 +68,7 @@ const TaskList: React.FC = () => {
           Overdue Tasks
         </Button>
       </div>
-      <div className="grid grid-cols-5 gap-3 px-4 py-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 px-4 py-2">
         {filteredTasks.map((task) => (
           <Card
             key={task.id}
@@ -80,7 +80,7 @@ const TaskList: React.FC = () => {
         ))}
       </div>
       <TaskDialog
-        task={currentTask ?? undefined}
+        task={currentTask ?? null}
         onSave={handleSave}
         isOpen={isDialogOpen}
         onOpenChange={setIsDialogOpen}

@@ -13,7 +13,7 @@ interface Task {
 }
 
 interface TaskDialogProps {
-  task?: Task;
+  task: Task | null;
   onSave: (task: Task) => void;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
@@ -41,7 +41,13 @@ const TaskDialog: React.FC<TaskDialogProps> = ({
   });
 
   useEffect(() => {
-    reset(task);
+    reset(task || {
+      id: "",
+      title: "",
+      description: "",
+      dueDate: "",
+      completed: false,
+    });
   }, [task, reset]);
 
   const onSubmit: SubmitHandler<Task> = (data) => {

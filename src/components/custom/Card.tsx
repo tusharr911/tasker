@@ -32,7 +32,7 @@ const Card: React.FC<CardProps> = ({
   return (
     <div
       className={cn([
-        "flex flex-col w-60 h-60 text-white py-4 px-4 overflow-hidden bg-zinc-900 bg-opacity-90 shadow-lg rounded-lg",
+        "flex flex-col w-full sm:w-60 h-60 text-white py-4 px-4 overflow-hidden bg-zinc-900 bg-opacity-90 shadow-lg rounded-lg",
         task.completed ? "bg-green-700" : "bg-zinc-900",
       ])}
     >
