@@ -52,4 +52,4 @@ const Card: React.FC = () => {
   );
 };
 
-export default Card; // Export the Card component
+export default Card; 
