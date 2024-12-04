@@ -1,13 +1,7 @@
 import React, { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "../ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-  
-} from "../ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
 import { Calendar } from "lucide-react";
 
 interface Task {
@@ -53,14 +47,14 @@ const TaskDialog: React.FC<TaskDialogProps> = ({
   const onSubmit: SubmitHandler<Task> = (data) => {
     onSave(data);
     onOpenChange(false);
-    console.log(data);
+    reset();
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogTitle>{task ? "Edit Task" : "Add Task"}</DialogTitle>
-        <DialogDescription>
+        <div>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
               <label
@@ -124,7 +118,7 @@ const TaskDialog: React.FC<TaskDialogProps> = ({
               <Button type="submit">Save</Button>
             </div>
           </form>
-        </DialogDescription>
+        </div>
       </DialogContent>
     </Dialog>
   );

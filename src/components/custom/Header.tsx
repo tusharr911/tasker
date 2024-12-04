@@ -1,12 +1,19 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Button } from "../ui/button";
 import TaskDialog from "../custom/TaskDialog";
+import { addTask, editTask } from "@/store/taskSlice";
 
 export default function Header() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleSave = (task) => {
-    console.log("Task saved:", task);
+    if (task.id) {
+      dispatch(editTask(task));
+    } else {
+      dispatch(addTask({ ...task, id: Date.now().toString() }));
+    }
   };
 
   return (
