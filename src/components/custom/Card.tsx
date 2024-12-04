@@ -1,6 +1,6 @@
+import React from "react";
 import { cn } from "@/lib/utils";
-import React, { useState } from "react";
-import ConfirmDialog from "./ConfirmDialog";
+import { Link } from "react-router";
 
 interface Task {
   id: string;
@@ -23,22 +23,11 @@ const Card: React.FC<CardProps> = ({
   onDelete,
   onToggleCompletion,
 }) => {
-  const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
-
   const formattedDate = new Date(task.dueDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
   });
-
-  const handleDelete = () => {
-    setIsConfirmDialogOpen(true);
-  };
-
-  const confirmDelete = () => {
-    onDelete();
-    setIsConfirmDialogOpen(false);
-  };
 
   return (
     <div
@@ -51,12 +40,14 @@ const Card: React.FC<CardProps> = ({
         <div className="cursor-pointer text-lg" onClick={onEdit}>
           ✏️
         </div>
-        <div className="cursor-pointer text-xl" onClick={handleDelete}>
+        <div className="cursor-pointer text-xl" onClick={onDelete}>
           ❌
         </div>
       </div>
 
-      <h2 className="text-lg font-bold mb-2">{task.title}</h2>
+      <Link to={`/tasks/${task.id}`}>
+        <h2 className="text-lg font-bold mb-2">{task.title}</h2>
+      </Link>
 
       <p className="text-sm italic mb-4 text-gray-300 whitespace-normal break-words overflow-hidden text-ellipsis">
         {task.description}
@@ -73,14 +64,6 @@ const Card: React.FC<CardProps> = ({
           {task.completed ? " Mark as Incomplete" : " Mark as Complete"}
         </h3>
       </div>
-      <div className="footer absolute w-full bottom-0 left-0 px-2 py-3"></div>
-
-      <ConfirmDialog
-        isOpen={isConfirmDialogOpen}
-        onOpenChange={setIsConfirmDialogOpen}
-        onConfirm={confirmDelete}
-        message="Are you sure you want to delete this task?"
-      />
     </div>
   );
 };
