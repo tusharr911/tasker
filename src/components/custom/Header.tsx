@@ -3,8 +3,9 @@ import { useDispatch } from "react-redux";
 import { Button } from "../ui/button";
 import TaskDialog from "../custom/TaskDialog";
 import { addTask, editTask } from "@/store/taskSlice";
+import { Input } from "../ui/input";
 
-export default function Header() {
+export default function Header({ searchQuery, setSearchQuery }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -17,8 +18,15 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full flex items-start justify-center py-3">
+    <header className="w-full flex items-center justify-center py-3 space-x-4">
       <Button onClick={() => setIsDialogOpen(true)}>Add Task</Button>
+      <Input
+        type="text"
+        placeholder="Search tasks by title"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="w-1/4"
+      />
       <TaskDialog
         task={null}
         onSave={handleSave}

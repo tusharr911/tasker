@@ -31,8 +31,8 @@ const Card: React.FC<CardProps> = ({
   return (
     <div
       className={cn([
-        "flex flex-col w-60 h-72 text-white py-4 px-4 overflow-hidden bg-zinc-900 bg-opacity-90 shadow-lg rounded-lg",
-        task.completed ? "bg-green-500" : "bg-zinc-900",
+        "flex flex-col w-60 h-60 text-white py-4 px-4 overflow-hidden bg-zinc-900 bg-opacity-90 shadow-lg rounded-lg",
+        task.completed ? "bg-green-700" : "bg-zinc-900",
       ])}
     >
       <div className="flex justify-between items-center">
@@ -46,12 +46,15 @@ const Card: React.FC<CardProps> = ({
 
       <h2 className="text-lg font-bold mb-2">{task.title}</h2>
 
-      <p className="text-sm italic mb-4 text-gray-300">{task.description}</p>
+      <p className="text-sm italic mb-4 text-gray-300 whitespace-normal break-words overflow-hidden text-ellipsis">
+  {task.description}
+</p>
+
 
       <div className="flex justify-between items-center">
         <h5 className="text-xs text-white">Due Date: {formattedDate}</h5>
       </div>
-      <div className="tag w-full py-5 flex justify-center items-center">
+      <div className="tag w-full pt-4 flex justify-center   mt-auto ">
         <h3
           className="text-sm font-semibold cursor-pointer"
           onClick={onToggleCompletion}

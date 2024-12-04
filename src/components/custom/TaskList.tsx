@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import {
   deleteTask,
   toggleTaskCompletion,
@@ -11,6 +10,7 @@ import {
 import Card from "./Card";
 import TaskDialog from "./TaskDialog";
 import { Button } from "../ui/button";
+import Header from "./Header";
 import { RootState } from "@/store/store";
 
 const TaskList: React.FC = () => {
@@ -18,14 +18,19 @@ const TaskList: React.FC = () => {
   const { tasks, filter } = useSelector((state: RootState) => state.tasks);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentTask, setCurrentTask] = useState<Task | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredTasks = tasks.filter((task) => {
-    if (filter === "completed") return task.completed;
-    if (filter === "pending") return !task.completed;
-    if (filter === "overdue")
-      return new Date(task.dueDate) < new Date() && !task.completed;
-    return true;
-  });
+  const filteredTasks = tasks
+    .filter((task) => {
+      if (filter === "completed") return task.completed;
+      if (filter === "pending") return !task.completed;
+      if (filter === "overdue")
+        return new Date(task.dueDate) < new Date() && !task.completed;
+      return true;
+    })
+    .filter((task) =>
+      task.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
   const handleEdit = (task: Task) => {
     setCurrentTask(task);
@@ -39,6 +44,7 @@ const TaskList: React.FC = () => {
 
   return (
     <div>
+      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <div className="flex space-x-4 mb-4 w-full items-center justify-center">
         <Button variant="outline" onClick={() => dispatch(setFilter("all"))}>
           All Tasks
@@ -62,7 +68,7 @@ const TaskList: React.FC = () => {
           Overdue Tasks
         </Button>
       </div>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-5 gap-3 px-4 py-2">
         {filteredTasks.map((task) => (
           <Card
             key={task.id}
